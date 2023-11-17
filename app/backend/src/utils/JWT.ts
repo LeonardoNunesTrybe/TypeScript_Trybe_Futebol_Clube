@@ -16,7 +16,7 @@ export default class JWT {
     try {
       return verify(token, this.secret) as JwtPayload;
     } catch (error) {
-      return 'Token is not a valid';
+      return 'Token is not valid';
     }
   }
 }
