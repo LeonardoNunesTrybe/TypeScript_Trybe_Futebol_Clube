@@ -10,4 +10,10 @@ export default class MatchController {
     const response = await this.matchService.findAll();
     res.status(200).json(response.data);
   }
+
+  public async findByQuery(req: Request, res: Response) {
+    const { inProgress } = req.query;
+    const response = await this.matchService.findByQuery(inProgress as string);
+    res.status(200).json(response.data);
+  }
 }

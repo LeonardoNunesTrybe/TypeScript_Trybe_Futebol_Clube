@@ -14,4 +14,22 @@ export default class MatchModel implements IMatchModel {
     });
     return matches;
   }
+
+  async findByQuery(query: string): Promise<IMatch[]> {
+    if (query === 'true') {
+      const matches = await this.model.findAll({
+        where: { inProgress: true },
+        include: [{ all: true, attributes: { exclude: ['id'] } }],
+      });
+      return matches;
+    }
+    if (query === 'false') {
+      const matches = await this.model.findAll({
+        where: { inProgress: false },
+        include: [{ all: true, attributes: { exclude: ['id'] } }],
+      });
+      return matches;
+    }
+    return this.findAll();
+  }
 }
