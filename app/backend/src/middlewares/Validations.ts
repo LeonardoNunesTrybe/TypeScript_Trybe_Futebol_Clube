@@ -34,16 +34,19 @@ class Validations {
     return next();
   }
 
-  /* /static validateUser(req: Request, res: Response, next: NextFunction): Response | void {
-    const user = req.body;
-    const requiredKeys = ['email', 'password', 'name'];
-    const notFoundKey = requiredKeys.find((key) => !(key in user));
-    if (notFoundKey) {
-      return res.status(400).json({ message: `${notFoundKey} is required` });
+  static async validateTeams(req: Request, res: Response, next: NextFunction):
+  Promise<Response | void> {
+    const { homeTeamId, awayTeamId } = req.body;
+    if (homeTeamId > 16 || awayTeamId > 16) {
+      return res.status(404).json({ message: 'There is no team with such id!' });
     }
-
-    next();
-  }/ */
+    if (homeTeamId === awayTeamId) {
+      return res.status(422).json(
+        { message: 'It is not possible to create a match with two equal teams' },
+      );
+    }
+    return next();
+  }
 }
 
 export default Validations;
