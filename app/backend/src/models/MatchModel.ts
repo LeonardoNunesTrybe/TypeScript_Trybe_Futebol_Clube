@@ -44,4 +44,16 @@ export default class MatchModel implements IMatchModel {
   ): Promise<void> {
     await this.model.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
   }
+
+  async createMatch(
+    homeTeamId: IMatch['homeTeamId'],
+    awayTeamId: IMatch['awayTeamId'],
+    homeTeamGoals: IMatch['homeTeamGoals'],
+    awayTeamGoals: IMatch['awayTeamGoals'],
+  ): Promise<IMatch> {
+    const response = await this.model.create(
+      { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals, inProgress: true },
+    );
+    return response;
+  }
 }

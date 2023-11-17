@@ -9,4 +9,10 @@ export interface IMatchModel {
     homeTeamGoals: IMatch['homeTeamGoals'],
     awayTeamGoals: IMatch['awayTeamGoals'],
   ): Promise<void>;
+  createMatch(
+    homeTeamId: IMatch['homeTeamId'],
+    awayTeamId: IMatch['awayTeamId'],
+    homeTeamGoals: IMatch['homeTeamGoals'],
+    awayTeamGoals: IMatch['awayTeamGoals'],
+  ): Promise<IMatch>;
 }
