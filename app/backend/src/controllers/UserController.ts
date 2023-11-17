@@ -15,4 +15,13 @@ export default class UserController {
     }
     return res.status(200).json(response.data);
   }
+
+  public async roleLogin(req: Request, res: Response): Promise<Response> {
+    const response = await this.userService.roleLogin(req.body.userToken);
+
+    if (response.status === 'UNAUTHORIZED') {
+      return res.status(mapStatusHTTP(response.status)).json(response.data);
+    }
+    return res.status(200).json(response.data);
+  }
 }
