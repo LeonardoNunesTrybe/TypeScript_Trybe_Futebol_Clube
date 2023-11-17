@@ -10,9 +10,6 @@ export default class MatchService {
 
   public async findAll(): Promise<ServiceResponse<IMatch[]>> {
     const matches = await this.matchModel.findAll();
-    return {
-      status: 'SUCCESSFULL',
-      data: matches,
-    };
+    return { status: 'SUCCESSFULL', data: matches };
   }
 }

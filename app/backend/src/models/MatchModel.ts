@@ -6,7 +6,12 @@ export default class MatchModel implements IMatchModel {
   private model = SequelizeMatchModel;
 
   async findAll(): Promise<IMatch[]> {
-    const matches = await this.model.findAll();
+    const matches = await this.model.findAll({
+      include: [{
+        all: true,
+        attributes: { exclude: ['id'] },
+      }],
+    });
     return matches;
   }
 }
