@@ -16,4 +16,10 @@ export default class MatchController {
     const response = await this.matchService.findByQuery(inProgress as string);
     res.status(200).json(response.data);
   }
+
+  public async finishMatch(req: Request, res: Response) {
+    const { id } = req.params;
+    const response = await this.matchService.finishMatch(Number(id));
+    res.status(200).json(response.data);
+  }
 }

@@ -32,4 +32,8 @@ export default class MatchModel implements IMatchModel {
     }
     return this.findAll();
   }
+
+  async finishMatch(id: IMatch['id']): Promise<void> {
+    await this.model.update({ inProgress: false }, { where: { id } });
+  }
 }
